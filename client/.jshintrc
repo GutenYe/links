@@ -18,7 +18,6 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-  "globals": {
-    "angular": false
-  }
+  "asi": true,
+  "predef": ["pd", "angular", "_"]
 }

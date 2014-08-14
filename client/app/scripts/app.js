@@ -1,15 +1,9 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name appApp
- * @description
- * # appApp
- *
- * Main module of the application.
- */
+window.pd = function() { console.log.apply(console, arguments) }
+
 angular
-  .module('appApp', [
+  .module('App', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -20,8 +14,8 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/index.html',
+        controller: 'IndexCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

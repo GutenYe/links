@@ -1,0 +1,8 @@
+<input ng-model='query'>
+
+<ul>
+  <li ng-repeat='link in links | filter:filterTag(query)'>
+    <a href='{{link.url}}' target='_blank'>{{link.title}}</a>
+  </li>
+</ul>
+

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-node --harmony app.js
+nodemon --harmony app.js
