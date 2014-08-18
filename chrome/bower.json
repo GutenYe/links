@@ -1,0 +1,16 @@
+{
+  "name": "chrome",
+  "version": "0.0.0",
+  "homepage": "https://github.com/GutenYe/links",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rivets": "~0.6.9"
+  }
+}

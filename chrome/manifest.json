@@ -1,0 +1,18 @@
+{
+  "name": "Guten Links",
+  "description": "my links",
+  "version": "0.1",
+  "permissions": ["tabs"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icon38.png",
+      "38": "images/icon38.png"
+    },
+    "default_title": "Google Mail",
+    "default_popup": "popup.html"
+  }
+}

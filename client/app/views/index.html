@@ -1,8 +1,13 @@
-<input ng-model='query'>
+<div class="row">
+  <div class="col-lg-12">
+    <input ng-model='query'>
+  </div>
 
-<ul>
-  <li ng-repeat='link in links | filter:filterTag(query)'>
-    <a href='{{link.url}}' target='_blank'>{{link.title}}</a>
-  </li>
-</ul>
-
+  <div class="col-lg-12">
+    <ul>
+      <li ng-repeat='link in links | filter:filterTag(query)'>
+        <a href='{{link.url}}' target='_blank'>{{link.title}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
