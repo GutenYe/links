@@ -2,6 +2,7 @@ var koa = require('koa')
 var logger = require('koa-logger')
 var Router = require('koa-router')
 var mount = require('koa-mount')
+var body = require('koa-body')
 var rethinkdb = require('koa-rethinkdb')
 var r = require('rethinkdb')
 var pd = function() { console.log.apply(console, arguments)}
@@ -17,12 +18,14 @@ app
   .use(rethinkdb({db: 'links'}))
   .use(setC)
   .use(logger())
+  .use(body())
   .use(mount('/api', api.middleware()))
   .use(test)
 
 function *test(next) {
-  var a = yield r.table('users').count().run(c)
-  this.body = a
+  pd(this.request.body)
+  //var a = yield r.table('users').count().run(c)
+  this.body = {a: 1}
 }
 
 function *setC(next) {

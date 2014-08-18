@@ -11,6 +11,8 @@
     "tests"
   ],
   "dependencies": {
-    "rivets": "~0.6.9"
+    "rivets": "~0.6.9",
+    "lodash": "~2.4.1",
+    "jquery": "~2.1.1"
   }
 }

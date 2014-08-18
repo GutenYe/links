@@ -2,7 +2,10 @@
   "name": "Guten Links",
   "description": "my links",
   "version": "0.1",
-  "permissions": ["tabs"],
+  "permissions": [
+    "tabs",
+    "http://localhost:9001/"
+  ],
   "background": {
     "scripts": ["background.js"]
   },

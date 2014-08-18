@@ -2,7 +2,9 @@
   "predef": [
 		"$",
     "pd",
-    "chrome"
+    "chrome",
+    "_",
+    "Class"
   ],
   "node" : true,
   "browser" : true,
