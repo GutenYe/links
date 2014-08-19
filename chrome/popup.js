@@ -7,13 +7,22 @@ var Link = Class.extend({
   url: null,
 
   save: function() {
+    var data =  {
+      title: this.title,
+      url: this.url
+    }
+
+    var type = 'POST',
+        url = '/links'
+    if (this.id) {
+      type = 'PUT'
+      url = '/links/' + encodeURIComponent(this.url)
+    }
+
     _.ajax({
-      type: 'POST',
-      url: '/links',
-      data: {
-        title: this.title,
-        url: this.url
-      }
+      type: type,
+      url: url,
+      data: data
     })
   }
 })
@@ -24,6 +33,9 @@ Link.find = function(id, callback) {
     url: '/links/'+encodeURIComponent(id),
     success: function(data) {
       callback(data)
+    },
+    notFound: function() {
+      callback({}, true)
     }
   })
 }
@@ -32,7 +44,6 @@ var LinkCtrl = Class.extend({
   model: null,
 
   draw: function() {
-    pd('draw', this.model)
     $('#title').value = this.model.title
     $('#url').value = this.model.url
   },
@@ -40,11 +51,9 @@ var LinkCtrl = Class.extend({
   retrieve:function() {
     this.model.title = $('#title').value
     this.model.link = $('#url').value
-    pd('retrieve', this.model)
   },
 
   save: function() {
-    pd('save')
     this.retrieve()
     this.model.save()
   }
@@ -57,10 +66,8 @@ var link, linkCtrl
 window.onload = function() {
   chrome.tabs.query({active: true}, function(tabs) {
     var tab = tabs[0]
-    pd('tab', tab)
-    Link.find(tab.url, function(data) {
-      pd('data', data)
-      if (!data) {
+    Link.find(tab.url, function(data, notFound) {
+      if (notFound) {
         data.title = tab.title
         data.url = tab.url
       }

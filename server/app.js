@@ -15,6 +15,12 @@ app
   .use(logger())
   .use(body())
   .use(mount('/api/links', links.middleware()))
+  .use(test)
+
+function *test(next) {
+  console.log("body: ", this.request.body)
+  yield next
+}
 
 function *setC(next) {
   global.c = this.rethinkdb

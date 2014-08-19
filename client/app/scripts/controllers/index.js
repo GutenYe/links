@@ -5,7 +5,11 @@ angular.module('App').controller('IndexCtrl', function($scope, Link) {
 
   $scope.filterTag = function(query) {
     return function(link) {
-      return _.contains(link.tags, query)
+      if (!query || query.trim() === '') {
+        return true
+      } else {
+        return _.contains(link.tags, query)
+      }
     }
   }
 })
