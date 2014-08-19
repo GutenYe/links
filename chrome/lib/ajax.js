@@ -1,4 +1,4 @@
-var ajax = function(options) {
+_.ajax = function(options) {
   _.defaults(options, {
     type: 'GET',
     url: '/',

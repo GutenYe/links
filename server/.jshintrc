@@ -1,10 +1,8 @@
 {
   "predef": [
-		"$",
     "pd",
-    "chrome",
     "_",
-    "Class",
+    "c"
   ],
   "node" : true,
   "browser" : true,
