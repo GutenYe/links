@@ -3,13 +3,15 @@ var pd = function() { console.log.apply(console, arguments) }
 
 // model
 var Link = Class.extend({
-  title: null,
-  url: null,
+  title: '',
+  url: '',
+  tags: [],
 
   save: function() {
     var data =  {
       title: this.title,
-      url: this.url
+      url: this.url,
+      tags: this.tags
     }
 
     var type = 'POST',
@@ -27,10 +29,10 @@ var Link = Class.extend({
   }
 })
 
-Link.find = function(id, callback) {
+Link.find = function(url, callback) {
   _.ajax({
     type: 'GET',
-    url: '/links/'+encodeURIComponent(id),
+    url: '/links/' + encodeURIComponent(url),
     success: function(data) {
       callback(data)
     },
@@ -46,11 +48,13 @@ var LinkCtrl = Class.extend({
   draw: function() {
     $('#title').value = this.model.title
     $('#url').value = this.model.url
+    $('#tags').value = this.model.tags.join(' ')
   },
 
   retrieve:function() {
     this.model.title = $('#title').value
     this.model.link = $('#url').value
+    this.model.tags = $('#tags').value.split(/ +/)
   },
 
   save: function() {

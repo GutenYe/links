@@ -16,6 +16,9 @@ app
   .use(body())
   .use(mount('/api/links', links.middleware()))
   .use(test)
+  .on('error', function(err) {
+    console.error(err)
+  })
 
 function *test(next) {
   console.log("body: ", this.request.body)
