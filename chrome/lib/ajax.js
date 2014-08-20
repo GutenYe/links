@@ -1,14 +1,14 @@
 _.ajax = function(options) {
   _.defaults(options, {
-    type: 'GET',
-    url: '/',
+    type: "GET",
+    url: "/",
     data: {},
     success: function() {},
     notFound: function() {}
   })
 
   var xhr = new XMLHttpRequest()
-  xhr.open(options.type, 'http://localhost:9001/api'+options.url, true)
+  xhr.open(options.type, "http://localhost:9001/api"+options.url, true)
   xhr.onreadystatechange = function() {
     if (this.readyState === 4) {
       if (this.status === 200) {
@@ -18,6 +18,6 @@ _.ajax = function(options) {
       }
     }
   }
-  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader("Content-Type", "application/json")
   xhr.send(JSON.stringify(options.data))
 }

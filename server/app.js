@@ -4,7 +4,8 @@ var mount = require('koa-mount')
 var body = require('koa-body')
 var rethinkdb = require('koa-rethinkdb')
 var r = require('rethinkdb')
-var links = require('./controllers/links')
+var linksCtrl = require('./controllers/links')
+var coreCtrl = require('./controllers/core')
 
 global.pd = function() { console.log.apply(console, arguments)}
 var app = koa()
@@ -14,7 +15,8 @@ app
   .use(setC)
   .use(logger())
   .use(body())
-  .use(mount('/api/links', links.middleware()))
+  .use(mount('/api', coreCtrl.middleware()))
+  .use(mount('/api/links', linksCtrl.middleware()))
   .use(test)
   .on('error', function(err) {
     console.error(err)

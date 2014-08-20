@@ -5,11 +5,13 @@ angular.module('App').controller('IndexCtrl', function($scope, Link) {
 
   $scope.filterTag = function(query) {
     return function(link) {
-      if (!query || query.trim() === '') {
-        return true
-      } else {
-        return _.contains(link.tags, query)
-      }
+      return _.isBlank(query) && true || _.contains(link.tags, query)
     }
+  }
+
+  $scope.visited = function(link) {
+    link.visited = link.visited + 1
+    link.visitedAt = new Date()
+    link.$save()
   }
 })

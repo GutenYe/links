@@ -1,8 +1,8 @@
-var Router = require('koa-router')
-var r = require('rethinkdb')
+var Router = require("koa-router")
+var r = require("rethinkdb")
 
 var index = function *(next) {
-  var cursor = yield r.table('links').run(c)
+  var cursor = yield r.table("links").run(c)
   var result = yield cursor.toArray()
   this.body = result
   yield next
@@ -22,36 +22,46 @@ var show = function *(next) {
 }
 
 var create = function *(next) {
-  var ret = yield r.table('links').insert(this.request.body).run(c)
-  this.body = ''
+  var ret = yield r.table("links").insert(this.request.body).run(c)
+  this.body = ""
   yield next
 }
 
 var update = function *(next) {
   var model = findModel.call(this)
   var ret = yield model.update(this.request.body).run(c)
-  this.body = ''
+  this.body = ""
   yield next
 }
 
 var destroy = function *(next) {
   var model = findModel.call(this)
   var ret = yield model.delete().run(c)
-  this.body = ''
+  this.body = ""
   yield next
+}
+
+var visited = function *(next) {
+  var model = findModel.call(this)
+  var data = {
+    visited: model.visited  + 1,
+    visitedAt: x
+  }
+  var ret = yield model.
 }
 
 var findModel = function() {
   var id = decodeURIComponent(this.params.id)
-  return r.table('links').getAll(id, {index: 'url'})
+  return r.table("links").getAll(id, {index: "url"})
 }
 
 var links = new Router()
 module.exports = links
 
 links
-  .get('/', index)
-  .get('/:id', show)
-  .post('/', create)
-  .put('/:id', update)
-  .delete('/:id', destroy)
+  .get("/", index)
+  .get("/:id", show)
+  .post("/", create)
+  .put("/:id", update)
+  .delete("/:id", destroy)
+  .post("/:id/visited", visited)
