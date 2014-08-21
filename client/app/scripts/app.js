@@ -6,7 +6,7 @@ angular
   .module('App', [
     'ngAnimate',
     'ngCookies',
-    'ngResource',
+    'myResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch'

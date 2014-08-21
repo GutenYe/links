@@ -41,15 +41,6 @@ var destroy = function *(next) {
   yield next
 }
 
-var visited = function *(next) {
-  var model = findModel.call(this)
-  var data = {
-    visited: model.visited  + 1,
-    visitedAt: x
-  }
-  var ret = yield model.
-}
-
 var findModel = function() {
   var id = decodeURIComponent(this.params.id)
   return r.table("links").getAll(id, {index: "url"})
@@ -64,4 +55,3 @@ links
   .post("/", create)
   .put("/:id", update)
   .delete("/:id", destroy)
-  .post("/:id/visited", visited)
