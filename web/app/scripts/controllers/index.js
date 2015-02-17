@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('App').controller('IndexCtrl', function($scope, Link) {
+angular.module('App').controller('IndexCtrl', ['$scope', 'Link', function($scope, Link) {
   $scope.links = Link.query()
 
   $scope.filterTag = function(query) {
@@ -14,4 +14,4 @@ angular.module('App').controller('IndexCtrl', function($scope, Link) {
     link.visitedAt = new Date()
     link.$save()
   }
-})
+}])

@@ -8,10 +8,12 @@ var linksCtrl = require('./controllers/links')
 var coreCtrl = require('./controllers/core')
 
 global.pd = function() { console.log.apply(console, arguments)}
+var env = process.env.NODE_ENV || 'development'
+var config = require('./config/'+env+'.json')
 var app = koa()
 
 app
-  .use(rethinkdb({db: 'links'}))
+  .use(rethinkdb({db: config.db}))
   .use(setC)
   .use(logger())
   .use(body())
