@@ -1,4 +1,5 @@
 {
+  "predef": ["pd", "_", "angular", "inject", "describe", "it", "before", "beforeEach", "after", "afterEach", "expect"],
   "node": true,
   "browser": true,
   "esnext": true,
@@ -18,6 +19,7 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-  "asi": true,
-  "predef": ["pd", "angular", "_"]
+  "white": true,
+  "validthis": true,
+  "asi": true
 }
